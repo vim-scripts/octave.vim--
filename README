@@ -1,0 +1,27 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=3600
+
+This file provides syntax highlighting for the GNU Octave programming language.
+
+Features
+* Highlights entire Octave grammar (endwhile, endfor, etc.) not just Matlab keywords
+* Updated to highlight all core Octave functions as of version 3.4.0
+* Highlights user functions from within the .m file being edited
+* Use-dependent highlighting of Octave system variables
+   When querying system variables, keyword is highlighted as a constant.  For example, var = true, highlights 'true' as a constant.
+   When setting variables or otherwise invoking keyword as function, keyword is highlighted as function.  For example, var = true (2,4), highlights 'true' as function.
+* Support for multi-line strings with line continuation characters as well as escaped quotes (\" or &#039) within string.
+* Support for new multi-line block comments
+* Error highlighting for bad number syntax, bad structure variable names, bad block comments, bad line continuations.
+* Optional support for highlighting operators (+, -, *, etc.), user variables, or tabs
+
+Errata
+* Occasionally user variables, with the same name as a core function, are highlighted when on the LHS of an assignment.
+  For example, '[type, info] = xxx' will highlight both keywords type and info.  The predominant use case, 'type = xxx' WILL be correctly treated as a user variable.
+
+Addenda
+
+This script owes some debt to the two existing Octave syntax scripts:
+http://www.vim.org/scripts/script.php?script_id=1241
+http://www.vim.org/scripts/script.php?script_id=1591
+
+However, it has been thoroughly rewritten and expanded considerably.
