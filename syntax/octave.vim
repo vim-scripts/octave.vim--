@@ -475,7 +475,7 @@ syn match octaveFuncIdent  "\<\h\w*\>"  contains=octaveFunction
 " order of items is is important here
 syn match octaveQueryVar "\<\h\w*[^(]"me=e-1  contains=octaveVariable,octaveFunction
 syn match octaveSetVar   "\<\h\w*\s*("me=e-1  contains=octaveSetVarFun,octaveFunction
-syn match octaveQueryVar "\<\h\w*\s*(\s*)"    contains=octaveVariable,octaveFunction
+syn match octaveQueryVar "\<\h\w*\s*\((\s*)\)\@="    contains=octaveVariable,octaveFunction
 
 " Don't highlight Octave keywords on LHS of '=', these are user vars
 syn match octaveUserVar   "\<\h\w*\s*\.\?[-+*/\\^]\?=[^=]"           
