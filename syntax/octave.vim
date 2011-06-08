@@ -5,7 +5,7 @@
 "                       Francisco Castro <fcr@adinet.com.uy>
 "                       Preben 'Peppe' Guldberg <peppe-vim@wielders.org>
 " Original Author: Mario Eusebio
-" Last Change: 18 May 2011
+" Last Change: 07 Jun 2011
 " Syntax matched to Octave Release: 3.4.0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if version < 600
@@ -19,30 +19,31 @@ syn case match
 
 " Stop keywords embedded in structures from lighting up
 " For example, mystruct.length = 1 should not highlight length.
-" warning: beginning of word pattern \< will no longer match '.'
+" WARNING: beginning of word pattern \< will no longer match '.'
 setlocal iskeyword +=.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntax group definitions for Octave
 syn keyword octaveBeginKeyword  for function if switch try unwind_protect while
-syn keyword octaveBeginKeyword  do 
+syn keyword octaveBeginKeyword  do
 syn keyword octaveEndKeyword    end endfor endfunction endif endswitch
 syn keyword octaveEndKeyword    end_try_catch end_unwind_protect endwhile until
 syn keyword octaveElseKeyword   case catch else elseif otherwise
 syn keyword octaveElseKeyword   unwind_protect_cleanup
 
-syn keyword octaveStatement  break continue global persistent return 
+syn keyword octaveStatement  break continue global persistent return
 
 syn keyword octaveReserved  __FILE__ __LINE__ classdef endclassdef endevents
 syn keyword octaveReserved  endmethods endproperties events methods properties
 syn keyword octaveReserved  static
 
 " List of commands (these don't require a parenthesis to invoke)
-syn keyword octaveCommand  cd chdir clear close dbcont dbquit dbstep demo
-syn keyword octaveCommand  diary doc echo edit edit_history example format
-syn keyword octaveCommand  help history hold ishold load lookfor ls mkoctfile
-syn keyword octaveCommand  more pkg run run_history save shg test type what
-syn keyword octaveCommand  which who whos
+syn keyword octaveCommand contained  cd chdir clear close dbcont dbquit dbstep
+syn keyword octaveCommand contained  demo diary doc echo edit edit_history
+syn keyword octaveCommand contained  example format help history hold ishold
+syn keyword octaveCommand contained  load lookfor ls mkoctfile more pkg run
+syn keyword octaveCommand contained  run_history save shg test type what which
+syn keyword octaveCommand contained  who whos
 
 " List of functions which set internal variables
 syn keyword octaveSetVarFun contained  EDITOR EXEC_PATH F_SETFD F_SETFL I
@@ -86,7 +87,7 @@ syn keyword octaveSetVarFun contained  struct_levels_to_print
 syn keyword octaveSetVarFun contained  suppress_verbose_help_message svd_driver
 syn keyword octaveSetVarFun contained  true whos_line_format
 
-" List of functions which query internal variables 
+" List of functions which query internal variables
 " Excluded i,j from list above because they are often used as loop variables
 " They will be highlighted appropriately by the rule which matches numbers
 syn keyword octaveVariable contained  EDITOR EXEC_PATH F_SETFD F_SETFL I
@@ -450,35 +451,47 @@ syn keyword octaveFunction contained  zscore
 
 " Add functions defined in .m file being read to list of highlighted functions
 function! s:CheckForFunctions()
-  let l:i = 1
-  while l:i <= line('$')
-    let l:line = getline(l:i)
-    if match(l:line, 'function') == 0
-      let l:line = substitute(l:line, "function *\\(.*= *\\)\\?", "", "")
-      let l:nfun = substitute(l:line, "\\([A-Za-z0-9_]\\+\\).*", "\\1", "")
-      if !empty(l:nfun)
-        execute "syn keyword octaveFunction" l:nfun
+  let i = 1
+  while i <= line('$')
+    let line = getline(i)
+    " Only look for functions at start of line.
+    " Commented function, '# function', will not trigger as match returns 3
+    if match(line, '\Cfunction') == 0
+      let line = substitute(line, '\vfunction *([^(]*\= *)?', '', '')
+      let nfun = matchstr(line, '\v^\h\w*')
+      if !empty(nfun)
+        execute "syn keyword octaveFunction" nfun
+      endif
+    " Include anonymous functions 'func = @(...)'.
+    " Use contained keyword to prevent highlighting on LHS of '='
+    elseif match(line, '\<\(\h\w*\)\s*=\s*@\s*(') != -1
+      let list = matchlist(line, '\<\(\h\w*\)\s*=\s*@\s*(')
+      let nfun = list[1]
+      if !empty(nfun)
+        execute "syn keyword octaveFunction contained" nfun
       endif
     endif
-    let l:i = l:i + 1
+    let i = i + 1
   endwhile
 endfunction
 
 call s:CheckForFunctions()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Highlight valid functions
-syn match octaveFuncIdent  "\<\h\w*\>"  contains=octaveFunction         
+" Define clusters for ease of writing subsequent rules
+syn cluster AllFuncVarCmd contains=octaveVariable,octaveFunction,octaveCommand
+syn cluster AllFuncSetCmd contains=octaveSetVarFun,octaveFunction,octaveCommand
 
 " Switch highlighting of variables based on coding use.
 " Query -> Constant, Set -> Function
 " order of items is is important here
-syn match octaveQueryVar "\<\h\w*[^(]"me=e-1  contains=octaveVariable,octaveFunction
-syn match octaveSetVar   "\<\h\w*\s*("me=e-1  contains=octaveSetVarFun,octaveFunction
-syn match octaveQueryVar "\<\h\w*\s*\((\s*)\)\@="    contains=octaveVariable,octaveFunction
+syn match octaveQueryVar "\<\h\w*[^(]"me=e-1  contains=@AllFuncVarCmd
+syn match octaveSetVar   "\<\h\w*\s*("me=e-1  contains=@AllFuncSetCmd
+syn match octaveQueryVar "\<\h\w*\s*\((\s*)\)\@="  contains=@AllFuncVarCmd
 
 " Don't highlight Octave keywords on LHS of '=', these are user vars
-syn match octaveUserVar   "\<\h\w*\s*\.\?[-+*/\\^]\?=[^=]"           
+syn match octaveUserVar  "\<\h\w*\ze[^<>!~=]\{-}==\@!"
+syn match octaveUserVar  "\<\h\w*\s*[<>!~=]=" contains=octaveVariable
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Errors (placed early so they may be overriden by more specific rules
@@ -512,8 +525,8 @@ syn match octaveFloat   "\<\d\+\(\.\d*\)\?\([edED][-+]\?\d\+\)\?[ij]\?\>"
 syn match octaveFloat   "\.\d\+\([edED][-+]\?\d\+\)\?[ij]\?\>"
 
 " Delimiters and transpose character
-syn match octaveDelimiter          "[][(){}]"
-syn match octaveTransposeOperator  "[])[:alnum:]._]'"lc=1
+syn match octaveDelimiter          "[][(){}@]"
+syn match octaveTransposeOperator  "[])[:alnum:]._]\@<='"
 
 " Tabs, for possibly highlighting as errors
 syn match octaveTab  "\t"
@@ -523,16 +536,16 @@ syn match octaveTilde "\~\s*[[:punct:]]"me=e-1
 
 " Line continuations, order of matches is important here
 syn match octaveLineContinuation  "\.\{3}$"
-syn match octaveLineContinuation  "\\$" 
+syn match octaveLineContinuation  "\\$"
 syn match octaveError  "\.\{3}.\+$"hs=s+3
-syn match octaveError  "\\\s\+$"hs=s+1 
+syn match octaveError  "\\\s\+$"hs=s+1
 " Line continuations w/comments
 syn match octaveLineContinuation  "\.\{3}\s*[#%]"me=e-1
-syn match octaveLineContinuation  "\\\s*[#%]"me=e-1 
+syn match octaveLineContinuation  "\\\s*[#%]"me=e-1
 
 " Comments, order of matches is important here
-syn keyword octaveFIXME contained  FIXME TODO 
-syn match  octaveComment  "[%#][^{}].*$"  contains=octaveFIXME,octaveTab
+syn keyword octaveFIXME contained  FIXME TODO
+syn match  octaveComment  "[%#].*$"  contains=octaveFIXME,octaveTab
 syn match  octaveError    "[#%][{}]"
 syn region octaveBlockComment  start="^\s*[#%]{\s*$"  end="^\s*[#%]}\s*$" contains=octaveFIXME,octaveTab
 
@@ -549,42 +562,42 @@ if version >= 508 || !exists("did_octave_syntax_inits")
   else
     command -nargs=+ HiLink hi def link <args>
   endif
-  
-  HiLink octaveBeginKeyword		Conditional
-  HiLink octaveElseKeyword		Conditional
-  HiLink octaveEndKeyword		Conditional
-  HiLink octaveReserved			Conditional
 
-  HiLink octaveStatement		Statement
-  HiLink octaveVariable			Constant
-  HiLink octaveSetVarFun		Function
-  HiLink octaveCommand			Statement
-  HiLink octaveFunction			Function
+  HiLink octaveBeginKeyword             Conditional
+  HiLink octaveElseKeyword              Conditional
+  HiLink octaveEndKeyword               Conditional
+  HiLink octaveReserved                 Conditional
 
-  HiLink octaveConditional		Conditional
-  HiLink octaveLabel			Label
-  HiLink octaveRepeat			Repeat
-  HiLink octaveFIXME			Todo
-  HiLink octaveString			String
-  HiLink octaveDelimiter		Identifier
-  HiLink octaveNumber			Number
-  HiLink octaveFloat			Float
-  HiLink octaveError			Error
-  HiLink octaveComment			Comment
-  HiLink octaveBlockComment		Comment
-  HiLink octaveSemicolon		SpecialChar
-  HiLink octaveTilde			SpecialChar
-  HiLink octaveLineContinuation		Special
+  HiLink octaveStatement                Statement
+  HiLink octaveVariable                 Constant
+  HiLink octaveSetVarFun                Function
+  HiLink octaveCommand                  Statement
+  HiLink octaveFunction                 Function
 
-  HiLink octaveTransposeOperator	octaveOperator
-  HiLink octaveArithmeticOperator	octaveOperator
-  HiLink octaveRelationalOperator	octaveOperator
-  HiLink octaveLogicalOperator		octaveOperator
+  HiLink octaveConditional              Conditional
+  HiLink octaveLabel                    Label
+  HiLink octaveRepeat                   Repeat
+  HiLink octaveFIXME                    Todo
+  HiLink octaveString                   String
+  HiLink octaveDelimiter                Identifier
+  HiLink octaveNumber                   Number
+  HiLink octaveFloat                    Float
+  HiLink octaveError                    Error
+  HiLink octaveComment                  Comment
+  HiLink octaveBlockComment             Comment
+  HiLink octaveSemicolon                SpecialChar
+  HiLink octaveTilde                    SpecialChar
+  HiLink octaveLineContinuation         Special
+
+  HiLink octaveTransposeOperator        octaveOperator
+  HiLink octaveArithmeticOperator       octaveOperator
+  HiLink octaveRelationalOperator       octaveOperator
+  HiLink octaveLogicalOperator          octaveOperator
 
 " Optional highlighting
-"  HiLink octaveOperator		Operator
-"  HiLink octaveIdentifier		Identifier
-"  HiLink octaveTab			Error
+"  HiLink octaveOperator                Operator
+"  HiLink octaveIdentifier              Identifier
+"  HiLink octaveTab                     Error
 
   delcommand HiLink
 endif
