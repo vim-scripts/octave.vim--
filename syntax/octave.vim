@@ -225,28 +225,29 @@ syn keyword octaveFunction contained  colamd colloc colon colorbar colormap
 syn keyword octaveFunction contained  colperm colstyle columns comet comet3
 syn keyword octaveFunction contained  comma command_line_path common_size
 syn keyword octaveFunction contained  commutation_matrix compan
-syn keyword octaveFunction contained  compare_versions compass
+syn keyword octaveFunction contained  compare_versions compass complement
 syn keyword octaveFunction contained  completion_matches complex computer cond
 syn keyword octaveFunction contained  condest conj contour contour3 contourc
 syn keyword octaveFunction contained  contourf contrast conv conv2 convhull
 syn keyword octaveFunction contained  convhulln convn cool copper copyfile cor
 syn keyword octaveFunction contained  cor_test corrcoef cos cosd cosh cot cotd
-syn keyword octaveFunction contained  coth cov cplxpair cputime cquad cross csc
-syn keyword octaveFunction contained  cscd csch cstrcat csvread csvwrite
-syn keyword octaveFunction contained  csymamd ctime ctranspose cummax cummin
-syn keyword octaveFunction contained  cumprod cumsum cumtrapz curl cut cylinder
-syn keyword octaveFunction contained  daspect daspk daspk_options dasrt
-syn keyword octaveFunction contained  dasrt_options dassl dassl_options date
-syn keyword octaveFunction contained  datenum datestr datetick datevec dbclear
-syn keyword octaveFunction contained  dbdown dblquad dbnext dbstack dbstatus
-syn keyword octaveFunction contained  dbstop dbtype dbup dbwhere deal deblank
-syn keyword octaveFunction contained  debug dec2base dec2bin dec2hex deconv
-syn keyword octaveFunction contained  del2 delaunay delaunay3 delaunayn delete
-syn keyword octaveFunction contained  dellistener det detrend diag diff
-syn keyword octaveFunction contained  diffpara diffuse dir discrete_cdf
-syn keyword octaveFunction contained  discrete_inv discrete_pdf discrete_rnd
-syn keyword octaveFunction contained  disp dispatch display divergence dlmread
-syn keyword octaveFunction contained  dlmwrite dmperm do_string_escapes dos dot
+syn keyword octaveFunction contained  coth cov cplxpair cputime cquad
+syn keyword octaveFunction contained  create_set cross csc cscd csch cstrcat
+syn keyword octaveFunction contained  csvread csvwrite csymamd ctime ctranspose
+syn keyword octaveFunction contained  cummax cummin cumprod cumsum cumtrapz
+syn keyword octaveFunction contained  curl cut cylinder daspect daspk
+syn keyword octaveFunction contained  daspk_options dasrt dasrt_options dassl
+syn keyword octaveFunction contained  dassl_options date datenum datestr
+syn keyword octaveFunction contained  datetick datevec dbclear dbdown dblquad
+syn keyword octaveFunction contained  dbnext dbstack dbstatus dbstop dbtype
+syn keyword octaveFunction contained  dbup dbwhere deal deblank debug dec2base
+syn keyword octaveFunction contained  dec2bin dec2hex deconv del2 delaunay
+syn keyword octaveFunction contained  delaunay3 delaunayn delete dellistener
+syn keyword octaveFunction contained  det detrend diag diff diffpara diffuse
+syn keyword octaveFunction contained  dir discrete_cdf discrete_inv
+syn keyword octaveFunction contained  discrete_pdf discrete_rnd disp dispatch
+syn keyword octaveFunction contained  display divergence dlmread dlmwrite
+syn keyword octaveFunction contained  dmperm dmult do_string_escapes dos dot
 syn keyword octaveFunction contained  double drawnow dsearch dsearchn
 syn keyword octaveFunction contained  dump_prefs dup2 duplication_matrix
 syn keyword octaveFunction contained  durbinlevinson eig eigs ellipsoid
@@ -305,18 +306,19 @@ syn keyword octaveFunction contained  is_rooted_relative_filename
 syn keyword octaveFunction contained  is_valid_file_id isa isalnum isalpha
 syn keyword octaveFunction contained  isappdata isargout isascii isbool iscell
 syn keyword octaveFunction contained  iscellstr ischar iscntrl iscolumn
-syn keyword octaveFunction contained  iscomplex isdebugmode isdefinite
-syn keyword octaveFunction contained  isdeployed isdigit isdir isempty isequal
-syn keyword octaveFunction contained  isequalwithequalnans isfield isfigure
-syn keyword octaveFunction contained  isfinite isfloat isglobal isgraph
-syn keyword octaveFunction contained  ishandle ishermitian ishghandle isieee
-syn keyword octaveFunction contained  isindex isinf isinteger iskeyword
-syn keyword octaveFunction contained  isletter islogical islower ismac ismatrix
-syn keyword octaveFunction contained  ismember ismethod isna isnan isnull
-syn keyword octaveFunction contained  isnumeric isobject isocolors isonormals
-syn keyword octaveFunction contained  isosurface ispc isprime isprint isprop
-syn keyword octaveFunction contained  ispunct isreal isrow isscalar issorted
-syn keyword octaveFunction contained  isspace issparse issquare isstr isstrprop
+syn keyword octaveFunction contained  iscommand iscomplex isdebugmode
+syn keyword octaveFunction contained  isdefinite isdeployed isdigit isdir
+syn keyword octaveFunction contained  isempty isequal isequalwithequalnans
+syn keyword octaveFunction contained  isfield isfigure isfinite isfloat
+syn keyword octaveFunction contained  isglobal isgraph ishandle ishermitian
+syn keyword octaveFunction contained  ishghandle isieee isindex isinf isinteger
+syn keyword octaveFunction contained  iskeyword isletter islogical islower
+syn keyword octaveFunction contained  ismac ismatrix ismember ismethod isna
+syn keyword octaveFunction contained  isnan isnull isnumeric isobject isocolors
+syn keyword octaveFunction contained  isonormals isosurface ispc isprime
+syn keyword octaveFunction contained  isprint isprop ispunct israwcommand
+syn keyword octaveFunction contained  isreal isrow isscalar issorted isspace
+syn keyword octaveFunction contained  issparse issquare isstr isstrprop
 syn keyword octaveFunction contained  isstruct issymmetric isunix isupper
 syn keyword octaveFunction contained  isvarname isvector isxdigit jet kbhit
 syn keyword octaveFunction contained  kendall keyboard kill
@@ -326,30 +328,32 @@ syn keyword octaveFunction contained  kolmogorov_smirnov_test_2 kron
 syn keyword octaveFunction contained  kruskal_wallis_test krylov krylovb
 syn keyword octaveFunction contained  kurtosis laplace_cdf laplace_inv
 syn keyword octaveFunction contained  laplace_pdf laplace_rnd lasterr lasterror
-syn keyword octaveFunction contained  lastwarn lcm ldivide le legend legendre
-syn keyword octaveFunction contained  length lgamma license lin2mu line link
-syn keyword octaveFunction contained  linkprop linspace list_in_columns
-syn keyword octaveFunction contained  list_primes loadaudio loadobj localtime
-syn keyword octaveFunction contained  log log10 log1p log2 logical logistic_cdf
+syn keyword octaveFunction contained  lastwarn lchol lcm ldivide le legend
+syn keyword octaveFunction contained  legendre length lgamma license lin2mu
+syn keyword octaveFunction contained  line link linkprop linspace
+syn keyword octaveFunction contained  list_in_columns list_primes loadaudio
+syn keyword octaveFunction contained  loadimage loadobj localtime log log10
+syn keyword octaveFunction contained  log1p log2 logical logistic_cdf
 syn keyword octaveFunction contained  logistic_inv logistic_pdf
 syn keyword octaveFunction contained  logistic_regression logistic_rnd logit
 syn keyword octaveFunction contained  loglog loglogerr logm logncdf logninv
 syn keyword octaveFunction contained  lognpdf lognrnd logspace lookup lower
 syn keyword octaveFunction contained  lsode lsode_options lsqnonneg lstat lt lu
 syn keyword octaveFunction contained  luinc luupdate magic mahalanobis
-syn keyword octaveFunction contained  make_absolute_filename manova mat2cell
-syn keyword octaveFunction contained  mat2str matrix_type max mcnemar_test
-syn keyword octaveFunction contained  md5sum mean meansq median menu merge mesh
-syn keyword octaveFunction contained  meshc meshgrid meshz methods mex mexext
-syn keyword octaveFunction contained  mfilename mgorth min minus mislocked
-syn keyword octaveFunction contained  mkdir mkfifo mkpp mkstemp mktime mldivide
-syn keyword octaveFunction contained  mlock mod mode moment movefile mpoles
-syn keyword octaveFunction contained  mpower mrdivide mtimes mu2lin munlock
-syn keyword octaveFunction contained  namelengthmax nargchk nargoutchk
-syn keyword octaveFunction contained  native_float_format nbincdf nbininv
-syn keyword octaveFunction contained  nbinpdf nbinrnd nchoosek ndgrid ndims ne
-syn keyword octaveFunction contained  newplot news nextpow2 nfields nnz
-syn keyword octaveFunction contained  nonzeros norm normcdf normest norminv
+syn keyword octaveFunction contained  make_absolute_filename manova
+syn keyword octaveFunction contained  mark_as_command mark_as_rawcommand
+syn keyword octaveFunction contained  mat2cell mat2str matrix_type max
+syn keyword octaveFunction contained  mcnemar_test md5sum mean meansq median
+syn keyword octaveFunction contained  menu merge mesh meshc meshgrid meshz
+syn keyword octaveFunction contained  methods mex mexext mfilename mgorth min
+syn keyword octaveFunction contained  minus mislocked mkdir mkfifo mkpp mkstemp
+syn keyword octaveFunction contained  mktime mldivide mlock mod mode moment
+syn keyword octaveFunction contained  movefile mpoles mpower mrdivide mtimes
+syn keyword octaveFunction contained  mu2lin munlock namelengthmax nargchk
+syn keyword octaveFunction contained  nargoutchk native_float_format nbincdf
+syn keyword octaveFunction contained  nbininv nbinpdf nbinrnd nchoosek ndgrid
+syn keyword octaveFunction contained  ndims ne newplot news nextpow2 nfields
+syn keyword octaveFunction contained  nnz nonzeros norm normcdf normest norminv
 syn keyword octaveFunction contained  normpdf normrnd not now nproc nth_element
 syn keyword octaveFunction contained  nthroot ntsc2rgb null num2cell num2hex
 syn keyword octaveFunction contained  num2str numel nzmax ocean
@@ -379,9 +383,9 @@ syn keyword octaveFunction contained  rats rcond rdivide
 syn keyword octaveFunction contained  re_read_readline_init_file
 syn keyword octaveFunction contained  read_readline_init_file readdir readlink
 syn keyword octaveFunction contained  real reallog realpow realsqrt record
-syn keyword octaveFunction contained  rectint refresh refreshdata regexp
-syn keyword octaveFunction contained  regexpi regexprep regexptranslate rehash
-syn keyword octaveFunction contained  rem remove_input_event_hook rename
+syn keyword octaveFunction contained  rectangle rectint refresh refreshdata
+syn keyword octaveFunction contained  regexp regexpi regexprep regexptranslate
+syn keyword octaveFunction contained  rehash rem remove_input_event_hook rename
 syn keyword octaveFunction contained  repelems replot repmat reset reshape
 syn keyword octaveFunction contained  residue resize restoredefaultpath rethrow
 syn keyword octaveFunction contained  rgb2hsv rgb2ind rgb2ntsc ribbon rindex
@@ -398,18 +402,22 @@ syn keyword octaveFunction contained  shading shell_cmd shift shiftdim sign
 syn keyword octaveFunction contained  sign_test sin sinc sind sinetone sinewave
 syn keyword octaveFunction contained  single sinh size size_equal sizemax
 syn keyword octaveFunction contained  sizeof skewness sleep slice sombrero sort
-syn keyword octaveFunction contained  sortrows source spalloc sparse spaugment
-syn keyword octaveFunction contained  spconvert spdiags spearman spectral_adf
+syn keyword octaveFunction contained  sortrows source spalloc sparse spatan2
+syn keyword octaveFunction contained  spaugment spchol spchol2inv spcholinv
+syn keyword octaveFunction contained  spconvert spcumprod spcumsum spdet spdiag
+syn keyword octaveFunction contained  spdiags spearman spectral_adf
 syn keyword octaveFunction contained  spectral_xdf specular speed spencer speye
-syn keyword octaveFunction contained  spfun sph2cart sphcat sphere spinmap
-syn keyword octaveFunction contained  spline spones spparms sprand sprandn
-syn keyword octaveFunction contained  sprandsym sprank sprintf spstats spvcat
-syn keyword octaveFunction contained  spy sqp sqrt sqrtm squeeze sscanf stairs
-syn keyword octaveFunction contained  stat statistics std stdnormal_cdf
+syn keyword octaveFunction contained  spfind spfun sph2cart sphcat sphere
+syn keyword octaveFunction contained  spinmap spinv spkron splchol spline split
+syn keyword octaveFunction contained  splu spmax spmin spones spparms spprod
+syn keyword octaveFunction contained  spqr sprand sprandn sprandsym sprank
+syn keyword octaveFunction contained  spring sprintf spstats spsum spsumsq
+syn keyword octaveFunction contained  spvcat spy sqp sqrt sqrtm squeeze sscanf
+syn keyword octaveFunction contained  stairs stat statistics std stdnormal_cdf
 syn keyword octaveFunction contained  stdnormal_inv stdnormal_pdf stdnormal_rnd
 syn keyword octaveFunction contained  stem stem3 stft str2double str2func
-syn keyword octaveFunction contained  str2num strcat strchr strcmp strcmpi
-syn keyword octaveFunction contained  strerror strfind strftime strjust
+syn keyword octaveFunction contained  str2mat str2num strcat strchr strcmp
+syn keyword octaveFunction contained  strcmpi strerror strfind strftime strjust
 syn keyword octaveFunction contained  strmatch strncmp strncmpi strptime
 syn keyword octaveFunction contained  strread strrep strsplit strtok strtrim
 syn keyword octaveFunction contained  strtrunc struct struct2cell structfun
@@ -434,20 +442,19 @@ syn keyword octaveFunction contained  uint64 uint8 uiputfile umask uminus uname
 syn keyword octaveFunction contained  undo_string_escapes unidcdf unidinv
 syn keyword octaveFunction contained  unidpdf unidrnd unifcdf unifinv unifpdf
 syn keyword octaveFunction contained  unifrnd unimplemented union unique unix
-syn keyword octaveFunction contained  unlink unmkpp unpack untabify untar
-syn keyword octaveFunction contained  unwrap unzip uplus upper urlread urlwrite
-syn keyword octaveFunction contained  usage usleep validatestring values vander
-syn keyword octaveFunction contained  var var_test vec vech vectorize ver
-syn keyword octaveFunction contained  version vertcat view voronoi voronoin
-syn keyword octaveFunction contained  waitforbuttonpress waitpid warning
-syn keyword octaveFunction contained  warning_ids warranty wavread wavwrite
-syn keyword octaveFunction contained  wblcdf wblinv wblpdf wblrnd weekday
-syn keyword octaveFunction contained  weibcdf weibinv weibpdf weibrnd
-syn keyword octaveFunction contained  welch_test white whitebg wienrnd
+syn keyword octaveFunction contained  unlink unmark_command unmark_rawcommand
+syn keyword octaveFunction contained  unmkpp unpack untabify untar unwrap unzip
+syn keyword octaveFunction contained  uplus upper urlread urlwrite usage usleep
+syn keyword octaveFunction contained  validatestring values vander var var_test
+syn keyword octaveFunction contained  vec vech vectorize ver version vertcat
+syn keyword octaveFunction contained  view voronoi voronoin waitforbuttonpress
+syn keyword octaveFunction contained  waitpid warning warning_ids warranty
+syn keyword octaveFunction contained  wavread wavwrite wblcdf wblinv wblpdf
+syn keyword octaveFunction contained  wblrnd weekday weibcdf weibinv weibpdf
+syn keyword octaveFunction contained  weibrnd welch_test white whitebg wienrnd
 syn keyword octaveFunction contained  wilcoxon_test wilkinson winter xlabel
 syn keyword octaveFunction contained  xlim xor yes_or_no ylabel ylim yulewalker
 syn keyword octaveFunction contained  z_test z_test_2 zeros zip zlabel zlim
-syn keyword octaveFunction contained  zscore
 
 " Add functions defined in .m file being read to list of highlighted functions
 function! s:CheckForFunctions()
