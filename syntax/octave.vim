@@ -521,8 +521,8 @@ syn match octaveRelationalOperator  "[<>]=\?"
 "syn match octaveIdentifier  "\<\h\w*\>"
 
 " Strings
-syn region octaveString  start=/'/  end=/'/  skip=/\\'/ contains=octaveLineContinuation
-syn region octaveString  start=/"/  end=/"/  skip=/\\"/ contains=octaveLineContinuation
+syn region octaveString  start=/'/  end=/'/  skip=/\\'/ contains=octaveLineContinuation,@Spell
+syn region octaveString  start=/"/  end=/"/  skip=/\\"/ contains=octaveLineContinuation,@Spell
 
 " Standard numbers
 syn match octaveNumber  "\<\d\+[ij]\?\>"
@@ -552,9 +552,9 @@ syn match octaveLineContinuation  "\\\s*[#%]"me=e-1
 
 " Comments, order of matches is important here
 syn keyword octaveFIXME contained  FIXME TODO
-syn match  octaveComment  "[%#].*$"  contains=octaveFIXME,octaveTab
+syn match  octaveComment  "[%#].*$"  contains=octaveFIXME,octaveTab,@Spell
 syn match  octaveError    "[#%][{}]"
-syn region octaveBlockComment  start="^\s*[#%]{\s*$"  end="^\s*[#%]}\s*$" contains=octaveFIXME,octaveTab
+syn region octaveBlockComment  start="^\s*[#%]{\s*$"  end="^\s*[#%]}\s*$" contains=octaveFIXME,octaveTab,@Spell
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Apply highlight groups to syntax groups defined above
