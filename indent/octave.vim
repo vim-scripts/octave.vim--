@@ -1,5 +1,5 @@
-" Matlab indent file
-" Language:     Matlab
+" Octave indent file
+" Language:     Octave
 " Maintainer:   Christophe Poucet <christophe.poucet@pandora.be>
 " Last Change:  14 May, 2014
 "
